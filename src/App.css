@@ -1,3 +1,8 @@
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+
 .App {
   text-align: center;
   margin: 2em;
@@ -20,6 +25,7 @@
   border: dotted lime;
   flex-grow: 1;
   justify-self: flex-start;
+  width: 50%;
   max-width: 600px;
   margin-right: 1em;
 }
@@ -29,6 +35,7 @@
   border: dotted lime;
   flex-grow: 1;
   justify-self: flex-end;
+  width: 50%;
   max-width: 600px;
   margin-left: 1em;
 }
@@ -36,8 +43,51 @@
 .content {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
   margin-top: 1em;
   padding: 1em 0em 1em 0em;
   border: dotted pink;
+}
+
+@media only screen and (orientation: portrait) and (max-width: 460px) {
+  .App {
+    text-align: center;
+    margin: 2em;
+  }
+
+  .SearchBar {
+    border: dotted lime;
+    padding: 1em;
+    background-color: rgba(187, 121, 204, 0.384);
+  }
+
+  .SearchBar input {
+    width: 70%;
+    max-width: 600px;
+  }
+
+  /* combine later */
+  .results {
+    background-color: rgba(187, 121, 204, 0.384);
+    border: dotted lime;
+    margin: 0px;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .nomList {
+    background-color: rgba(187, 121, 204, 0.384);
+    border: dotted lime;
+    margin: 1em 0em 0em 0em;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+    padding: 1em 0.5em 1em 0.5em;
+    border: dotted pink;
+  }
 }
