@@ -1,37 +1,33 @@
 import React from "react";
+import { debounce } from "lodash";
 
 class SearchBar extends React.Component {
   constructor() {
     super();
     this.state = {
       query: "",
-      typing: false,
     };
     this.doSearch = this.doSearch.bind(this);
     this.startSearch = this.startSearch.bind(this);
   }
   //onChange -> trigger timer -> query
 
-  doSearch() {
+  doSearch = debounce(() => {
     console.log(`Searching with: ${this.state.query}`);
     //Make API call
-  }
+  }, 3000);
 
   startSearch(e) {
-    //if query is the same as x seconds ago, and typing is false, do search
-    //else just set new query value
-
-    //try debounce
     this.setState({ query: e.target.value });
-    setTimeout(() => {
+    if (e.target.value.trim().length) {
+      console.log("value", e.target.value.trim());
       this.doSearch();
-    }, 3000);
+    }
   }
   render() {
     return (
       <div className="SearchBar">
         <form>
-          {/* <label htmlFor="search">Search for movies: </label> */}
           <input
             type="search"
             placeholder="Search by movie title"
