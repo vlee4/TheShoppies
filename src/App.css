@@ -23,20 +23,16 @@
 .results {
   background-color: rgba(187, 121, 204, 0.384);
   border: dotted lime;
-  flex-grow: 1;
   justify-self: flex-start;
   width: 50%;
-  max-width: 600px;
   margin-right: 1em;
 }
 
 .nomList {
   background-color: rgba(187, 121, 204, 0.384);
   border: dotted lime;
-  flex-grow: 1;
   justify-self: flex-end;
   width: 50%;
-  max-width: 600px;
   margin-left: 1em;
 }
 
