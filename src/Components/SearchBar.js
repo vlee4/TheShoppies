@@ -27,6 +27,7 @@ class SearchBar extends React.Component {
         `http://www.omdbapi.com/?s=${this.state.query}&apikey=${API_KEY}`
       );
       console.log("HERE's the DATA:", data);
+      //if response === false; show message: "No results found for: '{this.state.query}'""
     } else {
       //remove later
       console.log("skipped");
