@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import SearchBar from "./SearchBar/SearchBar.js";
-import Results from "./Results/Results.js";
-import NomList from "./NomList/NomList";
+import SearchBar from "./Components/SearchBar.js";
+import Results from "./Components/Results.js";
+import NomList from "./Components/NomList";
 
 function App() {
   return (
