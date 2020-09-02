@@ -8,38 +8,61 @@ class SearchBar extends React.Component {
     super();
     this.state = {
       query: "",
+      submitted: false,
       results: {},
     };
+    this.inputVal = React.createRef();
     this.doSearch = this.doSearch.bind(this);
     this.startSearch = this.startSearch.bind(this);
+    this.enterSearch = this.enterSearch.bind(this);
   }
   //onChange -> trigger timer -> query
 
   doSearch = debounce(async () => {
-    console.log(`Searching with: ${this.state.query}`);
+    if (!this.state.submitted) {
+      //don't trigger search if enter was pressed
+      this.setState({ submitted: false });
+      console.log(`Searching with: ${this.state.query}`);
+      let { data } = await axios.get(
+        `http://www.omdbapi.com/?s=${this.state.query}&apikey=${API_KEY}`
+      );
+      console.log("HERE's the DATA:", data);
+    } else {
+      //remove later
+      console.log("skipped");
+    }
+  }, 3000);
+
+  startSearch(e) {
+    this.setState({ query: e.target.value, submitted: false });
+    if (e.target.value.trim().length) {
+      // console.log("value", e.target.value.trim());
+      this.doSearch(e);
+    }
+  }
+
+  async enterSearch(e) {
+    e.preventDefault();
+    this.setState({ query: this.inputVal.current.value, submitted: true });
     let { data } = await axios.get(
       `http://www.omdbapi.com/?s=${this.state.query}&apikey=${API_KEY}`
     );
     console.log("HERE's the DATA:", data);
-  }, 3000);
-
-  startSearch(e) {
-    this.setState({ query: e.target.value });
-    if (e.target.value.trim().length) {
-      // console.log("value", e.target.value.trim());
-      this.doSearch();
-    }
   }
   render() {
     return (
       <div className="SearchBar">
-        <form>
+        <form onSubmit={this.enterSearch}>
           <input
-            type="search"
+            type="text"
             placeholder="Search by movie title"
             value={this.state.query}
+            ref={this.inputVal}
             onChange={this.startSearch}
           ></input>
+          <button type="submit" onClick={this.enterSearch}>
+            Search
+          </button>
         </form>
       </div>
     );
