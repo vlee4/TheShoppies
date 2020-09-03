@@ -1,7 +1,7 @@
 import React from "react";
 import { debounce } from "lodash";
-import { API_KEY } from "../secrets";
-import axios from "axios";
+import { findMovies } from "../Store/resultsReducer";
+import { connect } from "react-redux";
 
 class SearchBar extends React.Component {
   constructor() {
@@ -9,25 +9,20 @@ class SearchBar extends React.Component {
     this.state = {
       query: "",
       submitted: false,
-      results: {},
     };
     this.inputVal = React.createRef();
     this.doSearch = this.doSearch.bind(this);
     this.startSearch = this.startSearch.bind(this);
     this.enterSearch = this.enterSearch.bind(this);
   }
-  //onChange -> trigger timer -> query
 
   doSearch = debounce(async () => {
     if (!this.state.submitted) {
       //don't trigger search if enter was pressed
       this.setState({ submitted: false });
       console.log(`Searching with: ${this.state.query}`);
-      let { data } = await axios.get(
-        `http://www.omdbapi.com/?s=${this.state.query}&apikey=${API_KEY}`
-      );
-      console.log("HERE's the DATA:", data);
-      //if response === false; show message: "No results found for: '{this.state.query}'""
+      //if response === false/error from resultsReducer; show message: "No results found for: '{this.state.query}'""
+      this.props.searchMovies(this.state.query);
     } else {
       //remove later
       console.log("skipped");
@@ -37,7 +32,6 @@ class SearchBar extends React.Component {
   startSearch(e) {
     this.setState({ query: e.target.value, submitted: false });
     if (e.target.value.trim().length) {
-      // console.log("value", e.target.value.trim());
       this.doSearch(e);
     }
   }
@@ -45,10 +39,7 @@ class SearchBar extends React.Component {
   async enterSearch(e) {
     e.preventDefault();
     this.setState({ query: this.inputVal.current.value, submitted: true });
-    let { data } = await axios.get(
-      `http://www.omdbapi.com/?s=${this.state.query}&apikey=${API_KEY}`
-    );
-    console.log("HERE's the DATA:", data);
+    this.props.searchMovies(this.state.query);
   }
   render() {
     return (
@@ -70,4 +61,10 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchMovies: (query) => dispatch(findMovies(query)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SearchBar);
