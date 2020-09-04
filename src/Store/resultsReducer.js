@@ -17,7 +17,7 @@ export const findMovies = (query) => {
   return async (dispatch) => {
     try {
       let { data } = await axios.get(
-        `http://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
       );
       dispatch(getMovies(data, query));
       console.log("dispatching the data", data);

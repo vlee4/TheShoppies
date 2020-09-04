@@ -11,6 +11,7 @@ secrets.js
 
 # production
 /build
+/.firebase
 
 # misc
 .DS_Store
