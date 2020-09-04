@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import SingleMovie from "./SingleMovie";
 
 class Results extends React.Component {
   render() {
@@ -18,10 +19,16 @@ class Results extends React.Component {
       );
     } else {
       console.log("Results:", results);
-      // TO DO: make component to map results to
       return (
         <div className="results">
-          <div>This is a response: {this.props.results.Response}</div>
+          <div id="numResults">Results for: "{this.props.results.query}"</div>
+          <div>
+            {results.Search.map((movie, id) => {
+              return (
+                <SingleMovie key={id} Title={movie.Title} Year={movie.Year} />
+              );
+            })}
+          </div>
         </div>
       );
     }
