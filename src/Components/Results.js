@@ -25,7 +25,12 @@ class Results extends React.Component {
           <div>
             {results.Search.map((movie, id) => {
               return (
-                <SingleMovie key={id} Title={movie.Title} Year={movie.Year} />
+                <SingleMovie
+                  key={id}
+                  Title={movie.Title}
+                  Year={movie.Year}
+                  src="Results"
+                />
               );
             })}
           </div>

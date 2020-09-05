@@ -26,6 +26,12 @@ export const findMovies = (query) => {
     }
   };
 };
+//State = {
+// movies:
+//query:
+//noms:
+//}
+
 //reducer
 export default function movieResultsReducer(state = {}, action) {
   switch (action.type) {
