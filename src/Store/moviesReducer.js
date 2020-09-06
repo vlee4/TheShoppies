@@ -1,7 +1,7 @@
 //results reducer
 import axios from "axios";
 import { API_KEY } from "../secrets";
-import { startCase } from "lodash";
+
 //Actions
 const GET_MOVIES = "GET_MOVIES";
 const GET_NOMS = "GET_NOMS";
@@ -24,7 +24,7 @@ const getNoms = (noms) => {
   };
 };
 
-const addNom = (nom) => {
+const postNom = (nom) => {
   return {
     type: ADD_NOM,
     nom,
@@ -53,27 +53,48 @@ export const findMovies = (query) => {
 };
 
 export const findNoms = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch(getNoms());
   };
 };
 
 export const updateNoms = (nom) => {
   return async (dispatch) => {
-    dispatch(addNom(nom));
+    try {
+      console.log("updated noms with", nom);
+      dispatch(postNom(nom));
+    } catch (error) {
+      console.log("Error adding nomination", error);
+    }
   };
 };
 
+export const deleteNom = (nom) => {
+  return (dispatch) => {
+    dispatch(removeNom(nom));
+  };
+};
+
+const initialState = {
+  noms: [],
+};
+
 //reducer
-export default function movieResultsReducer(state = {}, action) {
+export default function movieResultsReducer(state = initialState, action) {
+  console.log("ACTION", action);
   switch (action.type) {
     case GET_MOVIES:
       return { ...state, ...action.movies, query: action.query };
     case GET_NOMS:
-      return state.noms;
+      return { ...state, noms: action.noms };
     case ADD_NOM:
-      state.noms.push(action.nom);
-      return state.noms;
+      const updatedNoms = [...state.noms, action.nom];
+      return { ...state, noms: updatedNoms };
+    case REMOVE_NOM:
+      const editedNoms = state.noms.filter((movie) => {
+        return movie.id !== action.nom.id;
+      });
+      return { ...state, noms: editedNoms };
     default:
       return state;
   }

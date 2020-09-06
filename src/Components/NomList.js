@@ -1,5 +1,5 @@
 import React from "react";
-import SingleMovie from "./SingleMovie";
+// import SingleMovie from "./SingleMovie";
 import { connect } from "react-redux";
 
 function NomList() {
@@ -11,7 +11,8 @@ function NomList() {
             {results.Search.map((movie) => {
               return (
                 <SingleMovie
-                  key={movie.imdbID}
+                   key={`${movie.imdbID}_${id}`}
+                  id={movie.imdbID}
                   Title={movie.Title}
                   Year={movie.Year}
                   src="Noms"
