@@ -23,10 +23,10 @@ class Results extends React.Component {
         <div className="results">
           <div id="numResults">Results for: "{this.props.results.query}"</div>
           <div>
-            {results.Search.map((movie, id) => {
+            {results.Search.map((movie) => {
               return (
                 <SingleMovie
-                  key={id}
+                  key={movie.imdbID}
                   Title={movie.Title}
                   Year={movie.Year}
                   src="Results"

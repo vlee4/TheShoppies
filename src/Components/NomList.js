@@ -1,5 +1,6 @@
 import React from "react";
 import SingleMovie from "./SingleMovie";
+import { connect } from "react-redux";
 
 function NomList() {
   //let {results} = this.props;
@@ -7,10 +8,10 @@ function NomList() {
     <div className="nomList">
       <div>This is the Nom List</div>
       {/* <div>
-            {results.Search.map((movie, id) => {
+            {results.Search.map((movie) => {
               return (
                 <SingleMovie
-                  key={id}
+                  key={movie.imdbID}
                   Title={movie.Title}
                   Year={movie.Year}
                   src="Noms"
@@ -22,4 +23,4 @@ function NomList() {
   );
 }
 //Fetch list of nominated movies
-export default NomList;
+export default connect()(NomList);
