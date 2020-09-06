@@ -47,21 +47,26 @@ export const deleteNom = (nom) => {
   };
 };
 
+/*state = {
+ imdbID1: {movie...},
+ imdbID2: {movie...},
+ ...
+}*/
+
 //REDUCER
-export default function nomsReducer(state = [], action) {
+export default function nomsReducer(state = {}, action) {
   console.log("ACTION", action);
   switch (action.type) {
     case GET_NOMS:
-      return { ...state, noms: action.noms };
+      return { ...state };
     case ADD_NOM:
-      const updatedNoms = [...state.noms, action.nom];
-      return { ...state, noms: updatedNoms };
+      return { ...state, [action.nom.id]: action.nom };
     case REMOVE_NOM:
-      const editedNoms = state.noms.filter((movie) => {
-        return movie.id !== action.nom.id;
-      });
-      return { ...state, noms: editedNoms };
+      const editedNoms = { ...state };
+      delete editedNoms[action.nom.id];
+      return { ...editedNoms };
     default:
       return state;
   }
 }
+//Probably change state back to []

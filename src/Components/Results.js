@@ -28,8 +28,7 @@ class Results extends React.Component {
                 <SingleMovie
                   key={`${movie.imdbID}_${id}`}
                   id={movie.imdbID}
-                  Title={movie.Title}
-                  Year={movie.Year}
+                  Movie={movie}
                   src="Results"
                 />
               );

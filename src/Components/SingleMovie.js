@@ -13,11 +13,10 @@ class SingleMovie extends React.Component {
 
   nominate() {
     console.log("PROPS", this.props);
-    const { id, Title, Year } = this.props;
+    const { id, Movie } = this.props;
     const nomination = {
       id,
-      Title,
-      Year,
+      Movie,
     };
     if (!this.state.nominated) {
       //if not nominated, add nomination
@@ -30,13 +29,14 @@ class SingleMovie extends React.Component {
     }
   }
   render() {
-    const { id, Title, Year, src } = this.props;
+    const { Title, Year } = this.props.Movie;
+    // console.log("PROPS", this.props);
     return (
       <div className="singleMovie">
         <h4>{Title}</h4>
-        <div>ID: {id}</div>
+        <div>ID: {this.props.id}</div>
         <div>Year of Release: {Year}</div>
-        {src === "Results" ? (
+        {this.props.src === "Results" ? (
           <button onClick={this.nominate} disabled={this.state.nominated}>
             Nominate
           </button>

@@ -1,27 +1,36 @@
 import React from "react";
-// import SingleMovie from "./SingleMovie";
+import SingleMovie from "./SingleMovie";
 import { connect } from "react-redux";
 
-function NomList() {
-  //let {results} = this.props;
-  return (
-    <div className="nomList">
-      <div>This is the Nom List</div>
-      {/* <div>
-            {results.Search.map((movie) => {
+class NomList extends React.Component {
+  render() {
+    const { nominations } = this.props;
+    const nomArr = [];
+    for (let [key, value] in Object.entries(nominations)) {
+      nomArr.push({ [key]: value });
+    }
+    return (
+      <div className="nomList">
+        <h4>Nominations List</h4>
+        <div>
+          {nomArr.length > 0 ? (
+            nomArr.map((nom, id) => {
               return (
                 <SingleMovie
-                   key={`${movie.imdbID}_${id}`}
-                  id={movie.imdbID}
-                  Title={movie.Title}
-                  Year={movie.Year}
-                  src="Noms"
+                  key={`${nom.imdbID}_${id}`}
+                  id={nom.imdbID}
+                  Movie={nom}
+                  src="Nom"
                 />
               );
-            })}
-          </div> */}
-    </div>
-  );
+            })
+          ) : (
+            <div>Select a movie to be added to the Nomination list</div>
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
