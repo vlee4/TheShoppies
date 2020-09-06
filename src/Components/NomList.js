@@ -23,5 +23,12 @@ function NomList() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    nominations: state.nominations,
+  };
+};
+
 //Fetch list of nominated movies
-export default connect()(NomList);
+export default connect(mapStateToProps)(NomList);

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateNoms } from "../Store/moviesReducer";
+import { updateNoms } from "../Store/nomsReducer";
 
 class SingleMovie extends React.Component {
   constructor() {

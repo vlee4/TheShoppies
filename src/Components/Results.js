@@ -44,6 +44,7 @@ class Results extends React.Component {
 const mapsStateToProps = (state) => {
   return {
     results: state.results,
+    nominations: state.nominations,
   };
 };
 
