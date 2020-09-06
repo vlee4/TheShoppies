@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateNoms } from "../Store/nomsReducer";
+import { updateNoms, deleteNom } from "../Store/nomsReducer";
 
 class SingleMovie extends React.Component {
   constructor() {
@@ -9,10 +9,11 @@ class SingleMovie extends React.Component {
       nominated: false,
     };
     this.nominate = this.nominate.bind(this);
+    this.removeNom = this.removeNom.bind(this);
   }
 
   nominate() {
-    console.log("PROPS", this.props);
+    // console.log("PROPS", this.props);
     const { id, Movie } = this.props;
     const nomination = {
       id,
@@ -23,11 +24,25 @@ class SingleMovie extends React.Component {
       this.props.addNom(nomination);
       console.log(`${this.props.id} has been nominated`);
       this.setState({ nominated: true });
-    } else {
-      //if already nominated, remove nomination
-      this.setState({ nominated: false });
     }
+    //  else {
+    //   //if already nominated, remove nomination
+    //   this.setState({ nominated: false });
+    //   console.log("Nomination removed");
+    // }
   }
+
+  removeNom() {
+    console.log("Nomination removed");
+    this.setState({ nominated: false });
+    const { id, Movie } = this.props;
+    const nomination = {
+      id,
+      Movie,
+    };
+    this.props.removeNom(nomination);
+  }
+
   render() {
     const { Title, Year } = this.props.Movie;
     // console.log("PROPS", this.props);
@@ -41,7 +56,7 @@ class SingleMovie extends React.Component {
             Nominate
           </button>
         ) : (
-          <button>Remove</button>
+          <button onClick={this.removeNom}>Remove</button>
         )}
       </div>
     );
@@ -51,6 +66,7 @@ class SingleMovie extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     addNom: (movie) => dispatch(updateNoms(movie)),
+    removeNom: (movie) => dispatch(deleteNom(movie)),
   };
 };
 
