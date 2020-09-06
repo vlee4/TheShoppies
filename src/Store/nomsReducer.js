@@ -69,4 +69,3 @@ export default function nomsReducer(state = {}, action) {
       return state;
   }
 }
-//Probably change state back to []

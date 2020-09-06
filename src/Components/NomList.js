@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 class NomList extends React.Component {
   render() {
     const { nominations } = this.props;
-    // console.log("HERE are the Nominations:", nominations);
+    console.log("HERE are the Nominations:", nominations);
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
       nomArr.push({ ...value });
     }
-    console.log("HERE are the Nominations:", nomArr);
+    // console.log("HERE are the Nominations:", nomArr);
     return (
       <div className="nomList">
         <h4>Nominations List</h4>

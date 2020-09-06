@@ -18,6 +18,8 @@ class Results extends React.Component {
         </div>
       );
     } else {
+      console.log("Nominations from Results", this.props.nominations);
+      const { nominations } = this.props;
       console.log("Results:", results);
       return (
         <div className="results">
@@ -29,6 +31,7 @@ class Results extends React.Component {
                   key={`${movie.imdbID}_${id}`}
                   id={movie.imdbID}
                   Movie={movie}
+                  nominated={nominations[movie.imdbID] ? true : false}
                   src="Results"
                 />
               );

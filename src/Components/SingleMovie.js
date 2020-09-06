@@ -12,6 +12,10 @@ class SingleMovie extends React.Component {
     this.removeNom = this.removeNom.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({ nominated: this.props.nominated });
+  }
+
   nominate() {
     // console.log("PROPS", this.props);
     const { id, Movie } = this.props;
