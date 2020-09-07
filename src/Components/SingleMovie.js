@@ -11,6 +11,7 @@ class SingleMovie extends React.Component {
 
   nominate() {
     if (!this.props.count || this.props.count < 5) {
+      //if no entries in nom list or count below 5
       const { id, Movie } = this.props;
       Movie.nominated = true;
       const nomination = {
@@ -61,3 +62,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SingleMovie);
+
+//session storage
+//on search: cache results
+//-if same search typed in, return cached results
+
+//on nominate:
+//-add nomination to cache
+//on remove (of nomination)
+//-remove from cache
