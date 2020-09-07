@@ -21,22 +21,20 @@ export const findMovies = (query) => {
       let { data } = await axios.get(
         `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
       );
-      const modData = data.Search.map((datum) => {
-        datum.nominated = false;
-        return datum;
-      });
-      data.Search = modData;
-      console.log("dispatching the data", data);
+      // console.log("FOUND DATA", data);
+      if (data.Response === "True") {
+        const modData = data.Search.map((datum) => {
+          datum.nominated = false;
+          return datum;
+        });
+        data.Search = modData;
+      }
       dispatch(getMovies(data, query));
     } catch (err) {
       console.log("error retrieving movies", err);
     }
   };
 };
-
-// const State = {
-//
-// };
 
 //reducer
 export default function movieResultsReducer(state = {}, action) {

@@ -55,7 +55,6 @@ export const deleteNom = (nom) => {
 
 //REDUCER
 export default function nomsReducer(state = {}, action) {
-  // console.log("ACTION", action);
   switch (action.type) {
     case GET_NOMS:
       return { ...state };

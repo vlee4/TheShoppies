@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 class NomList extends React.Component {
   render() {
     const { nominations } = this.props;
-    console.log("HERE are the Nominations:", nominations);
+    // console.log("HERE are the Nominations:", nominations);
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
       if (key !== "count") {
@@ -16,6 +16,9 @@ class NomList extends React.Component {
     return (
       <div className="nomList">
         <h4>Nominations List</h4>
+        <div id="nomBanner">
+          {nomArr.length === 5 ? "Nominations are full" : ""}
+        </div>
         <div>
           {nomArr.length > 0 ? (
             nomArr.map((nom, id) => {

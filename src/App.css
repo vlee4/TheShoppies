@@ -28,8 +28,9 @@
   margin-right: 1em;
 }
 
-#numResults {
-  padding: 0.5em;
+.resultsBanner {
+  background-color: rgba(245, 140, 245, 0.548);
+  padding: 1em 0em 1em 0em;
 }
 
 .singleMovie {
@@ -45,12 +46,18 @@
   margin-top: 0.5em;
 }
 
+/* Nominations */
 .nomList {
   background-color: rgba(187, 121, 204, 0.384);
   border: dotted lime;
   justify-self: flex-end;
   width: 50%;
   margin-left: 1em;
+}
+
+#nomBanner {
+  background-color: yellow;
+  font-weight: 500;
 }
 
 .content {
@@ -82,9 +89,14 @@
   .results {
     background-color: rgba(187, 121, 204, 0.384);
     border: dotted lime;
-    margin: 0px;
+    margin: 1em 0em 0em 0em;
     width: 100%;
     max-width: 600px;
+  }
+
+  .resultsBanner {
+    background-color: rgba(245, 140, 245, 0.548);
+    padding: 1em 0em 1em 0em;
   }
 
   .nomList {
@@ -94,10 +106,14 @@
     width: 100%;
     max-width: 600px;
   }
+  #nomBanner {
+    background-color: yellow;
+    font-weight: 500;
+  }
 
   .content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     margin-top: 1em;
     padding: 1em 0.5em 1em 0.5em;

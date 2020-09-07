@@ -8,13 +8,17 @@ class Results extends React.Component {
     if (results && results.Response === "False") {
       return (
         <div className="results">
-          No results found for search term:{results.query}{" "}
+          <h4 className="resultsBanner">
+            No results found for: {results.query}
+          </h4>
         </div>
       );
     } else if (!results.Response) {
       return (
         <div className="results">
-          Type in a movies name to start nominating movies.
+          <h4 className="resultsBanner">
+            Type in a title to start nominating movies
+          </h4>
         </div>
       );
     } else {
@@ -23,7 +27,9 @@ class Results extends React.Component {
       // console.log("Results:", results);
       return (
         <div className="results">
-          <div id="numResults">Results for: "{this.props.results.query}"</div>
+          <h4 className="resultsBanner">
+            Results for: "{this.props.results.query}"
+          </h4>
           <div>
             {results.Search.map((movie, id) => {
               return (

@@ -28,14 +28,14 @@ class SingleMovie extends React.Component {
       if (!this.props.nominated) {
         //if not nominated, add nomination
         this.props.addNom(nomination);
-        console.log(`${this.props.id} has been nominated`);
+        // console.log(`${this.props.id} has been nominated`);
         // this.setState({ nominated: true });
       }
     }
   }
 
   removeNom() {
-    console.log("Nomination removed");
+    // console.log("Nomination removed");
     // this.setState({ nominated: false });
     const { id, Movie } = this.props;
     Movie.nominated = false;
