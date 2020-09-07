@@ -8,7 +8,9 @@ class NomList extends React.Component {
     console.log("HERE are the Nominations:", nominations);
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
-      nomArr.push({ ...value });
+      if (key !== "count") {
+        nomArr.push({ ...value });
+      }
     }
     // console.log("HERE are the Nominations:", nomArr);
     return (

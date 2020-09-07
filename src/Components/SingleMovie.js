@@ -17,17 +17,20 @@ class SingleMovie extends React.Component {
   // }
 
   nominate() {
-    const { id, Movie } = this.props;
-    Movie.nominated = true;
-    const nomination = {
-      id,
-      Movie,
-    };
-    if (!this.props.nominated) {
-      //if not nominated, add nomination
-      this.props.addNom(nomination);
-      console.log(`${this.props.id} has been nominated`);
-      // this.setState({ nominated: true });
+    if (!this.props.count || this.props.count < 5) {
+      // console.log("COUNT FROM SINGLE", this.props.count);
+      const { id, Movie } = this.props;
+      Movie.nominated = true;
+      const nomination = {
+        id,
+        Movie,
+      };
+      if (!this.props.nominated) {
+        //if not nominated, add nomination
+        this.props.addNom(nomination);
+        console.log(`${this.props.id} has been nominated`);
+        // this.setState({ nominated: true });
+      }
     }
   }
 
@@ -44,6 +47,7 @@ class SingleMovie extends React.Component {
   }
 
   render() {
+    // console.log("PROPS", this.props);
     const { Title, Year } = this.props.Movie;
     return (
       <div className="singleMovie">

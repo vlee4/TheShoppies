@@ -55,16 +55,18 @@ export const deleteNom = (nom) => {
 
 //REDUCER
 export default function nomsReducer(state = {}, action) {
-  console.log("ACTION", action);
+  // console.log("ACTION", action);
   switch (action.type) {
     case GET_NOMS:
       return { ...state };
     case ADD_NOM:
-      return { ...state, [action.nom.id]: action.nom };
+      let counting = state.count ? state.count + 1 : 1;
+      return { ...state, [action.nom.id]: action.nom, count: counting };
     case REMOVE_NOM:
+      let counter = state.count <= 1 ? 0 : state.count - 1;
       const editedNoms = { ...state };
       delete editedNoms[action.nom.id];
-      return { ...editedNoms };
+      return { ...editedNoms, count: counter };
     default:
       return state;
   }

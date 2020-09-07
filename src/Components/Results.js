@@ -18,9 +18,9 @@ class Results extends React.Component {
         </div>
       );
     } else {
-      console.log("Nominations from Results", this.props.nominations);
+      // console.log("Nominations from Results", this.props.nominations);
       const { nominations } = this.props;
-      console.log("Results:", results);
+      // console.log("Results:", results);
       return (
         <div className="results">
           <div id="numResults">Results for: "{this.props.results.query}"</div>
@@ -36,6 +36,7 @@ class Results extends React.Component {
                       ? nominations[movie.imdbID].Movie.nominated
                       : movie.nominated
                   }
+                  count={nominations.count}
                   src="Results"
                 />
               );
