@@ -48,6 +48,9 @@
 
 /* Nominations */
 .nomList {
+  display: flex;
+  flex-direction: column;
+
   background-color: rgba(187, 121, 204, 0.384);
   border: dotted lime;
   justify-self: flex-end;
@@ -58,6 +61,16 @@
 .nomBanner {
   background-color: yellow;
   font-weight: 500;
+}
+
+.submitList {
+  text-align: left;
+  align-self: center;
+}
+
+.submitList ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 .content {
@@ -109,6 +122,11 @@
   .nomBanner {
     background-color: yellow;
     font-weight: 500;
+  }
+  .submitList {
+    text-align: left;
+    align-self: center;
+    padding: 0 0.5em 0 0.5em;
   }
 
   .content {

@@ -21,7 +21,6 @@ export const findMovies = (query) => {
       let { data } = await axios.get(
         `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
       );
-      // console.log("FOUND DATA", data);
       if (data.Response === "True") {
         const modData = data.Search.map((datum) => {
           datum.nominated = false;
@@ -31,7 +30,7 @@ export const findMovies = (query) => {
       }
       dispatch(getMovies(data, query));
     } catch (err) {
-      console.log("error retrieving movies", err);
+      console.log("Error retrieving movies", err);
     }
   };
 };

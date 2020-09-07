@@ -17,25 +17,31 @@ class NomList extends React.Component {
   }
 
   render() {
-    if (this.state.submitted) {
-      return (
-        <div className="nomList">
-          <div className="nomBanner">
-            Thank you for voting. Nominations have been submitted
-          </div>
-        </div>
-      );
-    }
-
     const { nominations } = this.props;
-    // console.log("HERE are the Nominations:", nominations);
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
       if (key !== "count") {
         nomArr.push({ ...value });
       }
     }
-    // console.log("HERE are the Nominations:", nomArr);
+    if (this.state.submitted) {
+      return (
+        <div className="nomList">
+          <div className="nomBanner">
+            Thank you for voting. Nominations have been submitted
+          </div>
+          <h4>You nominated</h4>
+          <div className="submitList">
+            <ul>
+              {nomArr.map((nom, id) => {
+                return <li key={`${nom.imdbID}_${id}`}>{nom.Movie.Title}</li>;
+              })}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="nomList">
         <h4>Nominations List</h4>
@@ -45,7 +51,6 @@ class NomList extends React.Component {
         <div>
           {nomArr.length > 0 ? (
             nomArr.map((nom, id) => {
-              // console.log("individual nom", nom);
               nom = nom.Movie;
               return (
                 <SingleMovie

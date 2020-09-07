@@ -22,9 +22,7 @@ class Results extends React.Component {
         </div>
       );
     } else {
-      // console.log("Nominations from Results", this.props.nominations);
       const { nominations } = this.props;
-      // console.log("Results:", results);
       return (
         <div className="results">
           <h4 className="resultsBanner">
