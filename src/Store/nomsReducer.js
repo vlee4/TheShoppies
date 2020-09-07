@@ -33,7 +33,7 @@ export const findNoms = () => {
 export const updateNoms = (nom) => {
   return async (dispatch) => {
     try {
-      console.log("updated noms with", nom);
+      // console.log("updated noms with", nom);
       dispatch(postNom(nom));
     } catch (error) {
       console.log("Error adding nomination", error);

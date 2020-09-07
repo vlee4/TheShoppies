@@ -5,41 +5,37 @@ import { updateNoms, deleteNom } from "../Store/nomsReducer";
 class SingleMovie extends React.Component {
   constructor() {
     super();
-    this.state = {
-      nominated: false,
-    };
+    // this.state = {
+    //   nominated: false,
+    // };
     this.nominate = this.nominate.bind(this);
     this.removeNom = this.removeNom.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ nominated: this.props.nominated });
-  }
+  // componentDidMount() {
+  //   this.setState({ nominated: this.props.nominated });
+  // }
 
   nominate() {
-    // console.log("PROPS", this.props);
     const { id, Movie } = this.props;
+    Movie.nominated = true;
     const nomination = {
       id,
       Movie,
     };
-    if (!this.state.nominated) {
+    if (!this.props.nominated) {
       //if not nominated, add nomination
       this.props.addNom(nomination);
       console.log(`${this.props.id} has been nominated`);
-      this.setState({ nominated: true });
+      // this.setState({ nominated: true });
     }
-    //  else {
-    //   //if already nominated, remove nomination
-    //   this.setState({ nominated: false });
-    //   console.log("Nomination removed");
-    // }
   }
 
   removeNom() {
     console.log("Nomination removed");
-    this.setState({ nominated: false });
+    // this.setState({ nominated: false });
     const { id, Movie } = this.props;
+    Movie.nominated = false;
     const nomination = {
       id,
       Movie,
@@ -49,14 +45,13 @@ class SingleMovie extends React.Component {
 
   render() {
     const { Title, Year } = this.props.Movie;
-    // console.log("PROPS", this.props);
     return (
       <div className="singleMovie">
         <h4>{Title}</h4>
         <div>ID: {this.props.id}</div>
         <div>Year of Release: {Year}</div>
         {this.props.src === "Results" ? (
-          <button onClick={this.nominate} disabled={this.state.nominated}>
+          <button onClick={this.nominate} disabled={this.props.nominated}>
             Nominate
           </button>
         ) : (

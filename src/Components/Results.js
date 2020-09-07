@@ -31,7 +31,11 @@ class Results extends React.Component {
                   key={`${movie.imdbID}_${id}`}
                   id={movie.imdbID}
                   Movie={movie}
-                  nominated={nominations[movie.imdbID] ? true : false}
+                  nominated={
+                    nominations[movie.imdbID]
+                      ? nominations[movie.imdbID].Movie.nominated
+                      : movie.nominated
+                  }
                   src="Results"
                 />
               );

@@ -43,5 +43,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-//Fetch list of nominated movies
 export default connect(mapStateToProps)(NomList);
