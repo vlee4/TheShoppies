@@ -8,24 +8,41 @@ class Results extends React.Component {
     if (results && results.Response === "False") {
       return (
         <div className="results">
-          No results found for search term:{results.query}{" "}
+          <h4 className="resultsBanner">
+            No results found for: {results.query}
+          </h4>
         </div>
       );
     } else if (!results.Response) {
       return (
         <div className="results">
-          Type in a movies name to start nominating movies.
+          <h4 className="resultsBanner">
+            Type in a title to start nominating movies
+          </h4>
         </div>
       );
     } else {
-      console.log("Results:", results);
+      const { nominations } = this.props;
       return (
         <div className="results">
-          <div id="numResults">Results for: "{this.props.results.query}"</div>
+          <h4 className="resultsBanner">
+            Results for: "{this.props.results.query}"
+          </h4>
           <div>
             {results.Search.map((movie, id) => {
               return (
-                <SingleMovie key={id} Title={movie.Title} Year={movie.Year} />
+                <SingleMovie
+                  key={`${movie.imdbID}_${id}`}
+                  id={movie.imdbID}
+                  Movie={movie}
+                  nominated={
+                    nominations[movie.imdbID]
+                      ? nominations[movie.imdbID].Movie.nominated
+                      : movie.nominated
+                  }
+                  count={nominations.count}
+                  src="Results"
+                />
               );
             })}
           </div>
@@ -38,6 +55,7 @@ class Results extends React.Component {
 const mapsStateToProps = (state) => {
   return {
     results: state.results,
+    nominations: state.nominations,
   };
 };
 

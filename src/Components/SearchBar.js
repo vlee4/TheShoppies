@@ -1,6 +1,6 @@
 import React from "react";
 import { debounce } from "lodash";
-import { findMovies } from "../Store/resultsReducer";
+import { findMovies } from "../Store/moviesReducer";
 import { connect } from "react-redux";
 
 class SearchBar extends React.Component {
@@ -20,12 +20,7 @@ class SearchBar extends React.Component {
     if (!this.state.submitted) {
       //don't trigger search if enter was pressed
       this.setState({ submitted: false });
-      console.log(`Searching with: ${this.state.query}`);
-      //if response === false/error from resultsReducer; show message: "No results found for: '{this.state.query}'""
       this.props.searchMovies(this.state.query);
-    } else {
-      //remove later
-      console.log("skipped");
     }
   }, 3000);
 
