@@ -60,6 +60,7 @@ class NomList extends React.Component {
     if (this.state.submitted) {
       return (
         <div className="nomList">
+          <h4>Nominations List</h4>
           <div className="nomBanner">
             Thank you for voting. Nominations have been submitted
           </div>
@@ -79,7 +80,7 @@ class NomList extends React.Component {
       <div className="nomList">
         <h4>Nominations List</h4>
         <div className="nomBanner">
-          {nomArr.length === 5 ? "Nominations are full" : ""}
+          {nomArr.length === 5 ? "Nominations List is full" : ""}
         </div>
         <div>
           {nomArr.length > 0 ? (
@@ -95,11 +96,15 @@ class NomList extends React.Component {
               );
             })
           ) : (
-            <div>Select a movie to be added to the Nomination list</div>
+            <div className="resultsBanner type">
+              Select up to 5 movies to be added to the Nomination list
+            </div>
           )}
         </div>
         {nomArr.length === 5 ? (
-          <button onClick={this.submitNominations}>Submit</button>
+          <button id="submit" onClick={this.submitNominations}>
+            Submit
+          </button>
         ) : (
           ""
         )}

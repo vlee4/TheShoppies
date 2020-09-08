@@ -47,7 +47,7 @@ class SearchBar extends React.Component {
             ref={this.inputVal}
             onChange={this.startSearch}
           ></input>
-          <button type="submit" onClick={this.enterSearch}>
+          <button id="search" type="submit" onClick={this.enterSearch}>
             Search
           </button>
         </form>

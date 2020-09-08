@@ -16,8 +16,8 @@ class Results extends React.Component {
     } else if (!results.Response) {
       return (
         <div className="results">
-          <h4 className="resultsBanner">
-            Type in a title to start nominating movies
+          <h4 className="resultsBanner type">
+            Type in a title to search for movies
           </h4>
         </div>
       );
