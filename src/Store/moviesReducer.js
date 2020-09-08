@@ -18,7 +18,6 @@ const getMovies = (movies, query) => {
 export const findMovies = (query) => {
   return async (dispatch) => {
     try {
-      // const storage = window.sessionStorage;
       if (sessionStorage.getItem(query)) {
         //if repeated search term
         const results = JSON.parse(sessionStorage.getItem(query));

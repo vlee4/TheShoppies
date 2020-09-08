@@ -54,6 +54,12 @@ class SingleMovie extends React.Component {
   }
 }
 
+// const mapStateToProps = (state) => {
+//   return {
+//     nominations: state.nominations,
+//   };
+// };
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addNom: (movie) => dispatch(updateNoms(movie)),
