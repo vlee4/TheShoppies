@@ -28,7 +28,6 @@ class NomList extends React.Component {
 
   componentDidUpdate() {
     const { count } = this.props.nominations.count ? this.props.nominations : 0;
-    console.log("PROPS in componentDIDUpdate", this.props);
 
     const storage_count =
       sessionStorage.getItem("count") !== "undefined"
@@ -52,8 +51,6 @@ class NomList extends React.Component {
 
   render() {
     const { nominations } = this.props;
-    console.log("PROPS in NOMLIST", this.props);
-
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
       if (key !== "count") {
