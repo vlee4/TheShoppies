@@ -21,7 +21,6 @@ export const findMovies = (query) => {
       if (sessionStorage.getItem(query)) {
         //if repeated search term
         const results = JSON.parse(sessionStorage.getItem(query));
-        console.log("STORED QUERY", results);
         dispatch(getMovies(results, query));
       } else {
         //if new search term
