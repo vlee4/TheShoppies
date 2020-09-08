@@ -3,6 +3,11 @@
   zoom: 1;
 }
 
+body {
+  background-color: #0e0004;
+  color: rgb(255, 255, 255);
+}
+
 .App {
   text-align: center;
   margin: 0em;
@@ -10,35 +15,99 @@
   min-height: 100vh;
 }
 
+h1 {
+  color: white;
+  background-color: black;
+  font-family: "Montserrat Subrayada", sans-serif;
+  text-align: left;
+  margin-left: 1em;
+}
+/* Buttons */
+button {
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: black;
+  border: 2px inset gold;
+  color: gold;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+button:hover {
+  color: #31081f;
+  background: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+  border: 2px outset rgb(212, 156, 1);
+}
+button:active {
+  letter-spacing: 2px;
+}
+
+button:disabled {
+  background: gold;
+  color: grey;
+}
+
 .SearchBar {
-  border: dotted lime;
   padding: 1em;
   margin: 0 2em 0 2em;
-  background-color: rgba(187, 121, 204, 0.384);
+  background-color: #31081f;
+  border-radius: 25% 10%;
+}
+
+#search {
+  height: 2.5em;
+}
+#search:hover {
+  background: gold;
 }
 
 .SearchBar input {
   width: 50%;
+  height: 1.75em;
   max-width: 600px;
+  border-radius: 10px;
 }
 
 /* Results */
 .results {
-  background-color: rgba(187, 121, 204, 0.384);
-  border: dotted lime;
+  background-color: #31081f;
   justify-self: flex-start;
   width: 50%;
-  margin-right: 1em;
+  height: max-content;
+  margin: 0 1em 2em 0;
+  border-radius: 55px;
 }
 
 .resultsBanner {
-  background-color: rgba(245, 140, 245, 0.548);
+  background-color: #fa16795d;
   padding: 1em 0em 1em 0em;
+  border-radius: 20px;
+  width: 50%;
+}
+
+.resultsBanner.type {
+  width: 100%;
 }
 
 .singleMovie {
-  border: dotted blue;
+  border: dotted gold;
+  background-color: black;
   padding: 1em;
+  margin: 1em;
 }
 
 .singleMovie h4 {
@@ -54,16 +123,27 @@
   display: flex;
   flex-direction: column;
 
-  background-color: rgba(187, 121, 204, 0.384);
-  border: dotted lime;
+  background-color: #31081f;
   justify-self: flex-end;
+  height: max-content;
   width: 50%;
   margin-left: 1em;
+  padding-bottom: 1em;
+  border-radius: 15%;
+}
+
+#submit {
+  width: 40%;
+  align-self: center;
 }
 
 .nomBanner {
-  background-color: yellow;
+  color: #13051a;
+  background-color: #fa198b;
   font-weight: 500;
+  width: 95%;
+  align-self: center;
+  border-radius: 5px;
 }
 
 .submitList {
@@ -81,7 +161,6 @@
   flex-direction: row;
   margin: 1em 1em 0em 1em;
   padding: 1em 0em 4em 0em;
-  border: dotted pink;
 }
 
 footer {
@@ -90,11 +169,19 @@ footer {
   left: 0;
   width: 100%;
   height: 4em;
-  background-color: purple;
+  background-color: #31081f;
   color: grey;
 }
 
 @media only screen and (orientation: portrait) and (max-width: 460px) {
+  h1 {
+    color: white;
+    background-color: black;
+    font-family: "Montserrat Subrayada", sans-serif;
+    text-align: left;
+    margin-left: 1em;
+  }
+
   .App {
     text-align: center;
     margin: 0em;
@@ -103,40 +190,43 @@ footer {
   }
 
   .SearchBar {
-    border: dotted lime;
     padding: 1em;
-    background-color: rgba(187, 121, 204, 0.384);
+    background-color: #31081f;
+    border-radius: 25% 10%;
   }
 
   .SearchBar input {
     width: 70%;
     max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 1em;
   }
 
-  /* combine later */
   .results {
-    background-color: rgba(187, 121, 204, 0.384);
-    border: dotted lime;
+    background-color: #31081f;
     margin: 1em 0em 0em 0em;
     width: 100%;
     max-width: 600px;
+    border-radius: 15px;
   }
 
   .resultsBanner {
-    background-color: rgba(245, 140, 245, 0.548);
+    background-color: #fa16795d;
     padding: 1em 0em 1em 0em;
+    border-radius: 20px;
   }
 
   .nomList {
-    background-color: rgba(187, 121, 204, 0.384);
-    border: dotted lime;
+    background-color: #31081f;
     margin: 1em 0em 0em 0em;
     width: 100%;
     max-width: 600px;
+    border-radius: 15px;
   }
   .nomBanner {
-    background-color: yellow;
+    background-color: #fa19898a;
     font-weight: 500;
+    border-radius: 5px;
   }
   .submitList {
     text-align: left;
@@ -150,7 +240,6 @@ footer {
     align-items: center;
     margin-top: 1em;
     padding: 1em 0.5em 2em 0.5em;
-    border: dotted pink;
   }
 
   footer {
@@ -159,7 +248,7 @@ footer {
     left: 0;
     width: 100%;
     height: 2em;
-    background-color: purple;
+    background-color: #31081f;
     color: grey;
   }
 }
