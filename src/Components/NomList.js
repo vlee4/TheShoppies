@@ -1,18 +1,51 @@
 import React from "react";
 import SingleMovie from "./SingleMovie";
 import { connect } from "react-redux";
+import { findNoms } from "../Store/nomsReducer";
 
 class NomList extends React.Component {
   constructor() {
     super();
     this.state = {
       submitted: false,
+      mounted: false,
     };
     this.submitNominations = this.submitNominations.bind(this);
   }
 
+  componentDidMount() {
+    //if noms already submitted
+    if (sessionStorage.getItem("submitted")) {
+      this.setState({ submitted: true });
+      this.props.loadNoms();
+    }
+    //if there are unsubmitted nominations
+    else if (sessionStorage.getItem("nominations")) {
+      this.props.loadNoms();
+    }
+    this.setState({ mounted: true });
+  }
+
+  componentDidUpdate() {
+    const { count } = this.props.nominations.count ? this.props.nominations : 0;
+
+    const storage_count =
+      sessionStorage.getItem("count") !== "undefined"
+        ? JSON.parse(sessionStorage.getItem("count"))
+        : -1;
+
+    if (storage_count !== count) {
+      sessionStorage.setItem(
+        "nominations",
+        JSON.stringify(this.props.nominations)
+      );
+      sessionStorage.setItem("count", JSON.stringify(count));
+    }
+  }
+
   submitNominations() {
     //Note: if db was connected, this.props.nominations could be sent to redux store and added to the db within a thunk
+    sessionStorage.setItem("submitted", JSON.stringify(true));
     this.setState({ submitted: true });
   }
 
@@ -81,4 +114,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NomList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadNoms: () => dispatch(findNoms()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NomList);
+
+//on load, get noms from session storage if they exist

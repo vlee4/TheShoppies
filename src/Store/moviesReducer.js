@@ -18,17 +18,25 @@ const getMovies = (movies, query) => {
 export const findMovies = (query) => {
   return async (dispatch) => {
     try {
-      let { data } = await axios.get(
-        `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
-      );
-      if (data.Response === "True") {
-        const modData = data.Search.map((datum) => {
-          datum.nominated = false;
-          return datum;
-        });
-        data.Search = modData;
+      if (sessionStorage.getItem(query)) {
+        //if repeated search term
+        const results = JSON.parse(sessionStorage.getItem(query));
+        dispatch(getMovies(results, query));
+      } else {
+        //if new search term
+        let { data } = await axios.get(
+          `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
+        );
+        if (data.Response === "True") {
+          const modData = data.Search.map((datum) => {
+            datum.nominated = false;
+            return datum;
+          });
+          data.Search = modData;
+        }
+        sessionStorage.setItem(query, JSON.stringify(data));
+        dispatch(getMovies(data, query));
       }
-      dispatch(getMovies(data, query));
     } catch (err) {
       console.log("Error retrieving movies", err);
     }

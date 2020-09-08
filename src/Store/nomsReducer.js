@@ -23,15 +23,16 @@ const removeNom = (nom) => {
     nom,
   };
 };
-
+//THUNK CREATORS
 export const findNoms = () => {
   return (dispatch) => {
-    dispatch(getNoms());
+    const noms = JSON.parse(sessionStorage.getItem("nominations"));
+    dispatch(getNoms(noms));
   };
 };
 
 export const updateNoms = (nom) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     try {
       dispatch(postNom(nom));
     } catch (error) {
@@ -56,7 +57,7 @@ export const deleteNom = (nom) => {
 export default function nomsReducer(state = {}, action) {
   switch (action.type) {
     case GET_NOMS:
-      return { ...state };
+      return { ...action.noms };
     case ADD_NOM:
       let counting = state.count ? state.count + 1 : 1;
       return { ...state, [action.nom.id]: action.nom, count: counting };
