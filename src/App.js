@@ -13,6 +13,9 @@ function App() {
         <Results />
         <NomList />
       </div>
+      <footer>
+        <div>Last Updated: September 2020</div>
+      </footer>
     </div>
   );
 }
