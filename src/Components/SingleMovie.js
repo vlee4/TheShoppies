@@ -54,12 +54,6 @@ class SingleMovie extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     nominations: state.nominations,
-//   };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addNom: (movie) => dispatch(updateNoms(movie)),
@@ -68,12 +62,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SingleMovie);
-
-//session storage
-//on search: cache results
-//-if same search typed in, return cached results
-
-//on nominate:
-//-add nomination to cache
-//on remove (of nomination)
-//-remove from cache

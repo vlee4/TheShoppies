@@ -22,21 +22,24 @@ class NomList extends React.Component {
     //if there are unsubmitted nominations
     else if (sessionStorage.getItem("nominations")) {
       this.props.loadNoms();
-    } else {
-      //no prev nom storage
-      sessionStorage.setItem("nominations", JSON.stringify({}));
-      sessionStorage.setItem("count", JSON.stringify(0));
     }
     this.setState({ mounted: true });
   }
 
   componentDidUpdate() {
-    const { nominations, count } = this.props;
-    const storage_count = sessionStorage.getItem("count")
-      ? JSON.parse(sessionStorage.getItem("count"))
-      : 0;
+    const { count } = this.props.nominations.count ? this.props.nominations : 0;
+    console.log("PROPS in componentDIDUpdate", this.props);
+
+    const storage_count =
+      sessionStorage.getItem("count") !== "undefined"
+        ? JSON.parse(sessionStorage.getItem("count"))
+        : -1;
+
     if (storage_count !== count) {
-      sessionStorage.setItem("nominations", JSON.stringify(nominations));
+      sessionStorage.setItem(
+        "nominations",
+        JSON.stringify(this.props.nominations)
+      );
       sessionStorage.setItem("count", JSON.stringify(count));
     }
   }
@@ -49,13 +52,7 @@ class NomList extends React.Component {
 
   render() {
     const { nominations } = this.props;
-    //if previous storage
-    // if (!this.state.mounted && sessionStorage.getItem("nominations")) {
-    //   //if DNE
-    //   this.props.loadNoms();
-    // } else if (this.state.mounted) {
-    //   sessionStorage.setItem("nominations", JSON.stringify(nominations));
-    // }
+    console.log("PROPS in NOMLIST", this.props);
 
     const nomArr = [];
     for (let [key, value] of Object.entries(nominations)) {
