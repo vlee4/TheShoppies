@@ -9,3 +9,9 @@ Movie details are supplied by the [OMDb API](http://www.omdbapi.com/)
 ### Notes
 
 If you would like to clone this project for yourself, please note that you should get your own API key from the [OMDb](http://www.omdbapi.com/) site and create a secrets.js file to hold that API key.
+
+The secrets.js file should simply have the following line:
+
+`module.exports = { API_KEY: "XXXXXXX" }`
+
+(where XXXXXXX is the OMDb API key)
